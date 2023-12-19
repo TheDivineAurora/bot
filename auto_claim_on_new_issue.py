@@ -6,7 +6,7 @@ import time
 owner = "opencodeiiita"
 github_token = "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"
 
-repositories = ["Scoop-Frontend", "GrepIt-Backend", "Hitch-Backend","GrepIt-Frontend","Code-Digger-2023","Hitch-Frontend","Scoop-Backend"]  # Replace with your repository names
+repositories = ["Collaborative-Web-2023","Scoop-Frontend", "GrepIt-Backend", "Hitch-Backend","GrepIt-Frontend","Code-Digger-2023","Hitch-Frontend","Scoop-Backend",]  # Replace with your repository names
 
 def get_issues(repo):
     headers = {
