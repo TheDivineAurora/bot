@@ -4,7 +4,7 @@ import requests
 import time
 
 owner = "opencodeiiita"
-github_token = "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"
+github_token = "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"
 
 repositories = ["Collaborative-Web-2023","Scoop-Frontend", "GrepIt-Backend", "Hitch-Backend","GrepIt-Frontend","Code-Digger-2023","Hitch-Frontend","Scoop-Backend",]  # Replace with your repository names
 
@@ -52,7 +52,7 @@ def main():
 
                 previous_issues[repo] = current_issues
 
-            time.sleep(5)  # Sleep for 5 seconds before checking again
+            time.sleep(20)  # Sleep for 5 seconds before checking again
     except KeyboardInterrupt:
         print("Script terminated.")
 

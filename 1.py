@@ -23,4 +23,4 @@ def check_rate_limit(token):
         print(response.text)
 
 # Replace "your_token_here" with your actual GitHub token
-check_rate_limit("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")
+check_rate_limit("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")

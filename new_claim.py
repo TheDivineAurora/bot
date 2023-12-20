@@ -4,7 +4,7 @@ import requests
 import time
 
 owner = "divineaurora1"
-github_token = "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"
+github_token = "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"
 
 repositories = ["random"]  # Replace with your repository names
 
