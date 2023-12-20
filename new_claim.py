@@ -3,10 +3,10 @@ import json
 import requests
 import time
 
-owner = "opencodeiiita"
+owner = "divineaurora1"
 github_token = "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"
 
-repositories = ["Collaborative-Web-2023","Scoop-Frontend", "GrepIt-Backend", "Hitch-Backend","GrepIt-Frontend","Code-Digger-2023","Hitch-Frontend","Scoop-Backend",]  # Replace with your repository names
+repositories = ["random"]  # Replace with your repository names
 
 def get_issues(repo):
     headers = {
@@ -14,6 +14,10 @@ def get_issues(repo):
         "Accept": "application/vnd.github.v3+json",
     }
     response = requests.get(f"https://api.github.com/repos/{owner}/{repo}/issues", headers=headers)
+
+    # Check if the response is successful
+    response.raise_for_status()
+
     return response.json()
 
 def claim_issue(repo, issue_number):
@@ -32,7 +36,18 @@ def claim_issue(repo, issue_number):
 def main():
     try:
         # Initialize the previous_issues dictionary with the initial existing issues for each repository
-        previous_issues = {repo: set(issue["number"] for issue in get_issues(repo)) for repo in repositories}
+        previous_issues = {}
+        for repo in repositories:
+            try:
+                issues = get_issues(repo)
+                issue_numbers = [issue["number"] for issue in issues]
+                previous_issues[repo] = set(issue_numbers)
+            except requests.exceptions.HTTPError as e:
+                # Handle HTTPError, e.g., when there are no issues in the repository
+                print(f"Error fetching issues for {owner}/{repo}: {e}")
+                previous_issues[repo] = set()
+
+        print("Initial previous_issues:", previous_issues)
 
         while True:
             for repo in repositories:
@@ -52,7 +67,7 @@ def main():
 
                 previous_issues[repo] = current_issues
 
-            time.sleep(5)  # Sleep for 5 seconds before checking again
+            time.sleep(15)  # Sleep for 5 seconds before checking again
     except KeyboardInterrupt:
         print("Script terminated.")
 
